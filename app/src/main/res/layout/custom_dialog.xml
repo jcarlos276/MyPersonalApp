@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:text="Usuario o contraseña invalido. Desea registrarse?"/>
+        android:text="@string/msg_registrar"/>
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:id="@+id/customDialogCancel"
-            android:text="Calcel" />
+            android:text="@string/cancel" />
 
 
         <Button
@@ -29,6 +29,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:id="@+id/customDialogOk"
-            android:text="OK" />
+            android:text="@string/ok" />
     </RelativeLayout>
 </LinearLayout>

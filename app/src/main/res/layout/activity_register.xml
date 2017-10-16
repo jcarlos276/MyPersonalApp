@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:textSize="20sp"
-        android:text="Nombre Completo"/>
+        android:text="@string/fullname"/>
 
     <EditText
         android:id="@+id/fullname_input"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:textSize="20sp"
-        android:text="Usurio"/>
+        android:text="@string/usuario"/>
 
     <EditText
         android:id="@+id/username_input"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:textSize="20sp"
-        android:text="Contraseña"/>
+        android:text="@string/contrase_a"/>
 
     <EditText
         android:id="@+id/password_input"
@@ -50,7 +50,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Registrar"
+        android:text="@string/registrar"
         android:onClick="callRegister"/>
 
 </LinearLayout>
