@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">MyPersonal App</string>
+    <string-array name="listArrayThemes">
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+    <string-array name="listValuesThemes">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="listArrayLanguages">
+        <item>Español</item>
+        <item>Ingles</item>
+    </string-array>
+    <string-array name="listValuesLanguages">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+</resources>
