@@ -2,7 +2,11 @@ package app.guillen.com.mypersonalapp.repositories;
 
 import android.app.Activity;
 import android.app.Application;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.orm.SugarRecord;
@@ -10,7 +14,10 @@ import com.orm.SugarRecord;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.guillen.com.mypersonalapp.R;
 import app.guillen.com.mypersonalapp.models.User;
+import app.guillen.com.mypersonalapp.views.MainActivity;
+import app.guillen.com.mypersonalapp.views.RegisterActivity;
 
 /**
  * Created by guillen on 09/10/17.
@@ -57,9 +64,21 @@ public class UserRepository {
                 }
                 Toast msg = Toast.makeText(context,"Contraseña Incorrecta",Toast.LENGTH_SHORT);
                 msg.show();
+                return null;
             }
         }
+        showDialogLoginFailed(context);
         return null;
+    }
+
+    public static Boolean validar(String username){
+        List<User> users=list();
+        for (User user : users){
+            if(user.getUsername().equalsIgnoreCase(username)){
+                return false;
+            }
+        }
+        return true;
     }
 
     public static User getUser(String username){
@@ -70,6 +89,37 @@ public class UserRepository {
             }
         }
         return null;
+    }
+
+    public static void showDialogLoginFailed(final Context context){
+        final Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.custom_dialog);
+        // Custom Android Allert Dialog Title
+        dialog.setTitle("Datos incorrectos");
+
+        Button cancel = dialog.findViewById(R.id.customDialogCancel);
+        Button ok = dialog.findViewById(R.id.customDialogOk);
+        // Click cancel to dismiss android custom dialog box
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Vuela a ingresar sus credenciales", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+        // Your android custom dialog ok action
+        // Action for custom dialog ok button click
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, RegisterActivity.class);
+                context.startActivity(intent);
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
     static {

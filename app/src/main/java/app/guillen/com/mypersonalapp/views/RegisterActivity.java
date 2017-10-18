@@ -36,10 +36,16 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        UserRepository.create(username, password, fullname);
-        Intent login = new Intent(this,MainActivity.class);
-        startActivity(login);
-        finish();
+        Boolean validacion = UserRepository.validar(username);
+        if(validacion==false){
+            Toast.makeText(this,"Username en uso. Ingrese otro username", Toast.LENGTH_SHORT).show();
+            return;
+        }else{
+            UserRepository.create(username, password, fullname);
+            Intent login = new Intent(this,MainActivity.class);
+            startActivity(login);
+            finish();
+        }
 
     }
 

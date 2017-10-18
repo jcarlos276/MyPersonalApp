@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(user == null){
             //Toast.makeText(this, "Username or password invalid", Toast.LENGTH_SHORT).show();
-            showDialogLoginFailed();
+            //showDialogLoginFailed();
         }else{
         Toast.makeText(this, "Bienvenido " + user.getFullname(), Toast.LENGTH_SHORT).show();
 
@@ -83,40 +83,5 @@ public class MainActivity extends AppCompatActivity {
     private void goDashboard(){
         startActivity(new Intent(this, DashboardActivity.class));
         finish();
-    }
-
-    private void goRegister(){
-        startActivity(new Intent(this, RegisterActivity.class));
-        finish();
-    }
-
-    public void showDialogLoginFailed(){
-        final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.custom_dialog);
-        // Custom Android Allert Dialog Title
-        dialog.setTitle("Datos incorrectos");
-
-        Button cancel = (Button) dialog.findViewById(R.id.customDialogCancel);
-        Button ok = (Button) dialog.findViewById(R.id.customDialogOk);
-        // Click cancel to dismiss android custom dialog box
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Vuela a ingresar sus credenciales", Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
-            }
-        });
-
-        // Your android custom dialog ok action
-        // Action for custom dialog ok button click
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goRegister();
-                dialog.dismiss();
-            }
-        });
-
-        dialog.show();
     }
 }
