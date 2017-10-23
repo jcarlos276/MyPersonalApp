@@ -6,17 +6,17 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.vstechlab.easyfonts.EasyFonts;
 
 import app.guillen.com.mypersonalapp.R;
 import app.guillen.com.mypersonalapp.models.User;
@@ -32,26 +32,53 @@ public class DashboardActivity extends AppCompatActivity {
     // SharedPreferences
     private SharedPreferences sharedPreferences;
 
-    private TextView usernameText;
+    private TextView fullnameText;
+    private TextView welcomeText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        User user = new User();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        usernameText = (TextView)findViewById(R.id.fullname_text);
+        fullnameText = (TextView)findViewById(R.id.fullname_text);
+        welcomeText = (TextView)findViewById(R.id.welcome_text);
 
         // init SharedPreferences
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         // get username from SharedPreferences
-        String username = sharedPreferences.getString("username", null);
-        Log.d(TAG, "username: " + username);
+        String fullname = sharedPreferences.getString("fullname", null);
+        Log.d(TAG, "Fullname: " + fullname);
 
-        User user = UserRepository.getUser(username);
+        if(getIntent().getExtras() != null) {
+            Intent intent = getIntent();
+            user = (User)intent.getSerializableExtra("Usuario");
+            if(user!=null) {
+                UserRepository.updateFullname(fullname, user.getId());
+                fullnameText.setText(user.getFullname());
+            }
+        }
 
-        if(user!=null) {
-            usernameText.setText(user.getFullname());
+        //Get theme from SharedPreferences
+        String theme = sharedPreferences.getString("tema", null);
+
+        //Get font from SharedPreferences
+        String font = sharedPreferences.getString("preferenciaFuente", null);
+        if(font != null){
+            switch (font){
+                case "1":
+                    changeTexto1();
+                    break;
+                case "2":
+                    changeTexto2();
+                    break;
+                case "3":
+                    changeTexto3();
+                    break;
+            }
+        }else{
+            Toast.makeText(this,"Ninguna fuente fue seleccionada",Toast.LENGTH_SHORT).show();
         }
 
        //
@@ -122,6 +149,19 @@ public class DashboardActivity extends AppCompatActivity {
             emailText.setText("Correo");
         }
         //
+    }
+
+    public void changeTexto1(){
+        welcomeText.setTypeface(EasyFonts.droidSerifBoldItalic(this));
+        fullnameText.setTypeface(EasyFonts.droidSerifBoldItalic(this));
+    }
+    public void changeTexto2(){
+        welcomeText.setTypeface(EasyFonts.caviarDreams(this));
+        fullnameText.setTypeface(EasyFonts.caviarDreams(this));
+    }
+    public void changeTexto3(){
+        welcomeText.setTypeface(EasyFonts.robotoBlackItalic(this));
+        fullnameText.setTypeface(EasyFonts.robotoBlackItalic(this));
     }
 
     public void callLogout(){

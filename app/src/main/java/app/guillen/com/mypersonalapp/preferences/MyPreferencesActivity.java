@@ -7,6 +7,8 @@ import android.preference.PreferenceFragment;
 import android.util.Log;
 
 import app.guillen.com.mypersonalapp.*;
+import app.guillen.com.mypersonalapp.models.User;
+import app.guillen.com.mypersonalapp.repositories.UserRepository;
 
 /**
  * Created by guillen on 09/10/17.
@@ -31,13 +33,16 @@ public class MyPreferencesActivity extends PreferenceActivity {
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+            SharedPreferences.Editor modifier = sharedPreferences.edit();
             Log.d("settings", "preference changed: " + s);
-            if("username".equals(s)){
-                Log.d("settings", "new value for username: " + sharedPreferences.getString(s, null));
-            }else if("applicationUpdates".equals(s)){
-                Log.d("settings", "new value for applicationUpdates: " + sharedPreferences.getBoolean(s, false));
-            }else if("downloadType".equals(s)){
-                Log.d("settings", "new value for downloadType: " + sharedPreferences.getString(s, null));
+            if("fullname".equals(s)){
+                Log.d("settings", "Nuevo Fullname: " + sharedPreferences.getString(s, null));
+            }else if("theme".equals(s)){
+                Log.d("settings", "Nuevo tema seleccionado: " + sharedPreferences.getBoolean(s, false));
+            }else if("font".equals(s)){
+                Log.d("settings", "Nueva fuente asignada: " + sharedPreferences.getString(s, null));
+                String update = sharedPreferences.getString(s, null);
+                boolean success = modifier.putString("preferenciaFuente", update).commit();
             }
         }
 

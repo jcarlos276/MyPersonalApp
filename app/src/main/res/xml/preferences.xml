@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <EditTextPreference android:title="Nombres"
-        android:key="username"/>
-    <ListPreference android:title="Theme"
+        android:key="fullname"/>
+    <ListPreference android:title="Tema"
         android:summary="Escoja el tema de su preferencia"
-        android:key="downloadType"
+        android:key="theme"
         android:defaultValue="1"
         android:entries="@array/listArrayThemes"
         android:entryValues="@array/listValuesThemes" />
-    <ListPreference android:title="Language"
-        android:summary="Seleccione su idioma"
-        android:key="downloadType"
+    <ListPreference android:title="Fuentes"
+        android:summary="Seleccione el tipo de fuente que desea"
+        android:key="font"
         android:defaultValue="1"
-        android:entries="@array/listArrayLanguages"
-        android:entryValues="@array/listValuesLanguages" />
+        android:entries="@array/listArrayFonts"
+        android:entryValues="@array/listValuesFonts" />
 </PreferenceScreen>

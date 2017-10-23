@@ -2,12 +2,14 @@ package app.guillen.com.mypersonalapp.models;
 
 import com.orm.dsl.Table;
 
+import java.io.Serializable;
+
 /**
  * Created by guillen on 09/10/17.
  */
 
 @Table
-public class User {
+public class User implements Serializable{
 
     private Long id;
     private String username;

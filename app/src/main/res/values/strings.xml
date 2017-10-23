@@ -18,12 +18,14 @@
         <item>2</item>
     </string-array>
 
-    <string-array name="listArrayLanguages">
-        <item>Español</item>
-        <item>Ingles</item>
+    <string-array name="listArrayFonts">
+        <item>droidSerifBoldItalic</item>
+        <item>CaviarDreams</item>
+        <item>RobothoBlackItali</item>
     </string-array>
-    <string-array name="listValuesLanguages">
+    <string-array name="listValuesFonts">
         <item>1</item>
         <item>2</item>
+        <item>3</item>
     </string-array>
 </resources>

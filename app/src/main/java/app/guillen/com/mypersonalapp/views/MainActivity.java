@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         // islogged remember
         if(sharedPreferences.getBoolean("islogged", false)){
             // Go to Dashboard
-            goDashboard();
+            goDashboard(username);
         }
 
     }
@@ -76,12 +76,15 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
 
         // Go to Dashboard
-        goDashboard();
+        goDashboard(username);
         }
     }
 
-    private void goDashboard(){
-        startActivity(new Intent(this, DashboardActivity.class));
+    private void goDashboard(String username){
+        Intent intent = new Intent(this, DashboardActivity.class);
+        User user = UserRepository.getUser(username);
+        intent.putExtra("Usuario", user);
+        startActivity(intent);
         finish();
     }
 }

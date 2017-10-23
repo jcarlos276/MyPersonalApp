@@ -48,6 +48,22 @@ public class UserRepository {
         SugarRecord.save(user);
     }
 
+    public static Long idToUsername(String username){
+        List<User> users = list();
+        for(User user : users){
+            if(user.getUsername().equals(username)){
+                return user.getId();
+            }
+        }
+        return null;
+    }
+
+    public static void updateFullname(String fullname, Long id){
+        User user = SugarRecord.findById(User.class, id);
+        user.setFullname(fullname);
+        SugarRecord.save(user);
+    }
+
     public static void delete(Long id){
         User user = SugarRecord.findById(User.class, id);
         SugarRecord.delete(user);
